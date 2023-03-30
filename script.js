@@ -1,12 +1,9 @@
-
-
-
-
 const resultText = document.querySelector('.result_text');
 const panel = document.querySelector('.panel');
 
 let num;
 let action;
+let bool = true;
 
 panel.addEventListener('click', function (event) {
     if (event.target.closest('button')) {
@@ -22,7 +19,9 @@ panel.addEventListener('click', function (event) {
             if (resultText.textContent[0] == '0' && resultText.textContent[1] != ',') {
                 resultText.textContent = resultText.textContent.slice(1);
             }
-            if (num) resultText.textContent = '';
+            if (num && bool){
+                resultText.textContent = '';
+                bool = false;}
             resultText.textContent += event.target.getAttribute("name");
         }
         else if (event.target.getAttribute("name") != 'dot'){
@@ -42,22 +41,27 @@ panel.addEventListener('click', function (event) {
         if (event.target.getAttribute("name") == 'per_cent') {
             num = resultText.textContent;
             action = '%';
+            bool = true;
         }
         if (event.target.getAttribute("name") == 'division') {
             num = resultText.textContent;
             action= '÷';
+            bool = true;
         }
         if (event.target.getAttribute("name") == 'multiplication') {
             num = resultText.textContent;
             action = '×';
+            bool = true;
         }
         if (event.target.getAttribute("name") == 'minus') {
             num = resultText.textContent;
             action = '-';
+            bool = true;
         }
         if (event.target.getAttribute("name") == 'plus') {
             num = resultText.textContent;
             action = '+';
+            bool = true;
         }
         if (event.target.getAttribute("name") == 'equal') {
             switch (action) {
